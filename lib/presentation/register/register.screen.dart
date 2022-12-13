@@ -15,6 +15,7 @@ class RegisterScreen extends GetView<RegisterController> {
   }
 }
 
+//commit
 class MobileFormSignUp extends StatelessWidget {
   var controller = Get.put(RegisterController());
   MobileFormSignUp({super.key});
@@ -51,7 +52,6 @@ class MobileFormSignUp extends StatelessWidget {
     );
   }
 }
-//test
 
 class NameFormSignUp extends StatelessWidget {
   var controller = Get.put(RegisterController());
