@@ -51,6 +51,7 @@ class MobileFormSignUp extends StatelessWidget {
     );
   }
 }
+//test
 
 class NameFormSignUp extends StatelessWidget {
   var controller = Get.put(RegisterController());
