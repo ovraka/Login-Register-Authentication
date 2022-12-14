@@ -97,7 +97,7 @@ class TextSuggession extends StatelessWidget {
                       textStyle: const TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w500,
-                          color: skyBlue)),
+                          color: seaBlue)),
                   recognizer: TapGestureRecognizer()
                     ..onTap = () {
                       Get.toNamed(Routes.REGISTER);

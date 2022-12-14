@@ -16,6 +16,8 @@ class RegisterController extends GetxController {
   RegisterResponse? response;
 
   var isRegisterSuccessful = false.obs;
+  var isPasswordHide = true.obs;
+  var isConfirmationPasswordHide = true.obs;
 
   var service = RegisterService();
 
