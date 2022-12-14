@@ -15,6 +15,7 @@ class HomeScreen extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    controller.checkToken();
     return Scaffold(
       body: Container(
         padding: const EdgeInsets.all(50),

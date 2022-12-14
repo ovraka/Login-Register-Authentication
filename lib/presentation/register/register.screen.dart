@@ -257,7 +257,7 @@ class GradientButtonSignUp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: ElevatedButton(
-        onPressed: () async {
+        onPressed: () {
           controller.registerUser();
         },
         style: ElevatedButton.styleFrom(
