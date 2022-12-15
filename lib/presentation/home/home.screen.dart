@@ -1,13 +1,13 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:login_register_authentication/infrastructure/theme/colors.dart';
+import 'package:login_register_authentication/infrastructure/theme/link_text.dart';
 
 import '../../infrastructure/navigation/routes.dart';
+import '../../infrastructure/theme/company_resource.dart';
+import '../../infrastructure/theme/gradient_button.dart';
+import '../../infrastructure/theme/outline_button.dart';
 import 'controllers/home.controller.dart';
 
 class HomeScreen extends GetView<HomeController> {
@@ -31,9 +31,9 @@ class HomeScreen extends GetView<HomeController> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: const [
-                    EvonLogo(),
+                    CompanyLogo(),
                     SizedBox(height: 10),
-                    EvonTitle(),
+                    CompanyTitle(),
                     SizedBox(height: 30),
                     CompanyTagLine(),
                   ],
@@ -43,173 +43,32 @@ class HomeScreen extends GetView<HomeController> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  children: const [
-                    GradientButton(),
-                    SizedBox(height: 15),
-                    OutlineButton(),
-                    SizedBox(height: 50)
+                  children: [
+                    GradientButton(
+                      onPressed: () {
+                        Get.toNamed(Routes.REGISTER);
+                      },
+                      buttonText: 'Sign Up',
+                    ),
+                    const SizedBox(height: 15),
+                    OutlineButton(
+                        onPressed: () {
+                          Get.toNamed(Routes.LOGIN);
+                        },
+                        buttonText: 'Log In'),
+                    const SizedBox(height: 50)
                   ],
                 )),
-            const TextSkipForNow()
+            LinkText(
+                onPressed: () {
+                  SystemNavigator.pop();
+                },
+                textButtonStyleFromSize: 20,
+                textStyleSize: 16,
+                text: 'Skip for now')
           ],
         ),
       ),
-    );
-  }
-}
-
-class CompanyTagLine extends StatelessWidget {
-  const CompanyTagLine({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      'Discover upcoming events near you',
-      maxLines: 2,
-      textAlign: TextAlign.center,
-      style: GoogleFonts.nunito(
-          textStyle: const TextStyle(
-              fontSize: 24, fontWeight: FontWeight.w600, color: tagline)),
-    );
-  }
-}
-
-class EvonTitle extends StatelessWidget {
-  const EvonTitle({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      'EVON',
-      style: GoogleFonts.nunito(
-          textStyle: const TextStyle(
-              fontSize: 32, fontWeight: FontWeight.bold, color: evonTitle)),
-    );
-  }
-}
-
-class TextSkipForNow extends StatelessWidget {
-  const TextSkipForNow({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.bottomCenter,
-      child: TextButton(
-        style: TextButton.styleFrom(
-          textStyle: const TextStyle(fontSize: 20),
-        ),
-        onPressed: () {
-          SystemNavigator.pop();
-        },
-        child: Text(
-          'Skip for now',
-          style: GoogleFonts.poppins(
-              textStyle:
-                  const TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
-        ),
-      ),
-    );
-  }
-}
-
-class GradientButton extends StatelessWidget {
-  const GradientButton({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () {
-        Get.toNamed(Routes.REGISTER);
-      },
-      style: ElevatedButton.styleFrom(
-          elevation: 0,
-          padding: EdgeInsets.zero,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(5))),
-      child: Ink(
-        decoration: BoxDecoration(
-            gradient: const LinearGradient(colors: [seaBlue, skyBlue]),
-            borderRadius: BorderRadius.circular(5)),
-        child: Container(
-          width: double.infinity,
-          height: 50,
-          alignment: Alignment.center,
-          child: Text(
-            'Sign Up',
-            style: GoogleFonts.poppins(
-                textStyle: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500)),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class OutlineButton extends StatelessWidget {
-  const OutlineButton({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-        width: double.infinity,
-        height: 50,
-        child: ElevatedButton(
-          onPressed: () {
-            Get.toNamed(Routes.LOGIN);
-          },
-          style: ElevatedButton.styleFrom(
-              elevation: 0,
-              backgroundColor: Colors.white,
-              side: const BorderSide(width: 2, color: seaBlue)),
-          child: Text(
-            'Log In',
-            style: GoogleFonts.poppins(
-                textStyle: const TextStyle(
-                    color: seaBlue, fontSize: 16, fontWeight: FontWeight.w500)),
-          ),
-        ));
-  }
-}
-
-class EvonLogo extends StatelessWidget {
-  const EvonLogo({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Stack(children: <Widget>[
-        Container(
-          width: 90.0,
-          height: 90.0,
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-                colors: [seaBlue, skyBlue],
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter),
-            shape: BoxShape.circle,
-          ),
-        ),
-        const Positioned(
-            top: 22,
-            left: 7,
-            child: Icon(
-              Icons.location_pin,
-              color: Colors.white,
-              size: 50,
-            )),
-        const Positioned(
-            top: 22,
-            left: 33,
-            child: Icon(
-              Icons.location_pin,
-              color: Colors.white,
-              size: 50,
-            )),
-      ]),
     );
   }
 }
